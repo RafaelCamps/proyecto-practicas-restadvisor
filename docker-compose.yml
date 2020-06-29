@@ -10,6 +10,21 @@ services:
       - "8080:80"
     networks:
       - restadvisor
-
+  db-restadvisor:
+    container_name: db-restadvisor
+    image: mysql:8.0
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Re$tR00tP@$$
+      MYSQL_DATABASE: restadvisor
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: Admin123
+    ports:
+      - "3306:3306"
+    networks:
+      - restadvisor
 networks:
   restadvisor:
