@@ -19,12 +19,25 @@ services:
       - ./sql:/docker-entrypoint-initdb.d
       - ./data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: Re$tR00tP@$$
+      MYSQL_ROOT_PASSWORD: P4sSw0rd
       MYSQL_DATABASE: restadvisor
       MYSQL_USER: admin
-      MYSQL_PASSWORD: Admin123
+      MYSQL_PASSWORD: M4sT3r4Dm1n
     ports:
       - "3306:3306"
+    networks:
+      - restadvisor
+  phpmyadmin:
+    depends_on:
+      - db-restadvisor
+    container_name: phpmyadmin-restadvisor
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db-restadvisor
+      MYSQL_ROOT_PASSWORD: P4sSw0rd
     networks:
       - restadvisor
 networks:
