@@ -11,7 +11,13 @@
 </head>
 
 <body>
-    <h1 class="text-center text-primary">RestAdvisor</h1>
+
+    <?php
+    include_once 'views/partials/header.php';
+    ?>
+
+
+
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
