@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  www:
+    container_name: Web-Server-Restadvisor
+    build: .
+    restart: always
+    volumes: ["./www:/var/www/html"]
+    ports:
+      - "8080:80"
+    networks:
+      - restadvisor
+
+networks:
+  restadvisor:
