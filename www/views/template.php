@@ -15,13 +15,7 @@
 
     <?php
     include_once 'views/components/header.php';
-    ?>
-    <main class="mt-5 container bg-light">
-        <h2 class="mt-5 py-3">Esta es la plantilla</h2>
-    </main>
-
-
-    <?php
+    include_once 'views/pages/main.php';
     include_once 'views/components/footer.php';
     ?>
 
