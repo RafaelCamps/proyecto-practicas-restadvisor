@@ -1,5 +1,11 @@
 <?php
-$restaurantes = RestaurantesController::listarRestaurantesCtrl();
+
+if(isset($_POST['buscar'])){
+   $filtro = $_POST['buscar'];
+} else {
+   $filtro = "";
+}
+    $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtro);
 // echo '<br><br><br>';
 // var_dump($_POST);
 //var_dump($restaurantes);

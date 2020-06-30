@@ -1,18 +1,18 @@
 <?php
-    
+
 require_once 'conexion.php';
 
 
-class RestaurantesModel{
+class RestaurantesModel
+{
 
- static public function listarRestaurantesMdl(){
+    static public function listarRestaurantesMdl($filtro)
+    {
 
-    $consulta = Conexion::conectar()->prepare("SELECT * FROM restaurantes");
-    $consulta->execute();
-    $resultado = $consulta->fetchAll();
+        $consulta = Conexion::conectar()->prepare("SELECT * FROM restaurantes");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
 
-    return $resultado;
-
- } 
-
+        return $resultado;
+    }
 }

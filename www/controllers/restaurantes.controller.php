@@ -2,9 +2,9 @@
 
 class RestaurantesController{
 
-    static public function listarRestaurantesCtrl(){
+    static public function listarRestaurantesCtrl($filtro){
 
-        $resultado = RestaurantesModel::listarRestaurantesMdl();
+        $resultado = RestaurantesModel::listarRestaurantesMdl($filtro);
         return $resultado;
 
     }
