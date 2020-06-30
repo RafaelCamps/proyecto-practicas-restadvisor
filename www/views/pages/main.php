@@ -1,14 +1,20 @@
 <?php
 
-if(isset($_POST['buscar'])){
-   $filtro = $_POST['buscar'];
+if (isset($_POST['buscar'])) {
+    $filtros = array("buscar" => $_POST['buscar'], "campo" => $_POST['campo']);
 } else {
-   $filtro = "";
+    $filtros = "";
 }
-    $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtro);
-// echo '<br><br><br>';
+//echo '<br><br><br>';
+$restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
+
+// echo '<br><br>Post:<br>';
 // var_dump($_POST);
-//var_dump($restaurantes);
+// echo '<br><br>Filtros:<br>';
+// var_dump($filtros);
+// echo '<br><br>Restaurantes:<br>';
+// var_dump($restaurantes);
+
 ?>
 
 <div class="content container mt-5 bg-light">
