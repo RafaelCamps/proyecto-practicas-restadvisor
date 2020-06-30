@@ -3,24 +3,6 @@ SET SQL_MODE
 SET time_zone
 = "+01:00";
 
-
-CREATE TABLE `restadvisor`.`usuarios`
-(
-  `id_usuario` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR
-(75) NOT NULL,
-  `email` VARCHAR
-(100) NOT NULL,
-  `pass` VARCHAR
-(255) NOT NULL,
-  `tipo` TINYINT
-(1) NOT NULL,
-  `creacion` TIMESTAMP NOT NULL,
-  PRIMARY KEY
-(`id_usuario`),
-  UNIQUE INDEX `email_UNIQUE`
-(`email` ASC));
-
 CREATE TABLE `restadvisor`.`restaurantes`
 (
   `id_restaurante` INT NOT NULL AUTO_INCREMENT,
@@ -54,6 +36,24 @@ CREATE TABLE `restadvisor`.`restaurantes`
   `creacion` TIMESTAMP NOT NULL,
   PRIMARY KEY
 (`id_restaurante`));
+
+CREATE TABLE `restadvisor`.`usuarios`
+(
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR
+(75) NOT NULL,
+  `email` VARCHAR
+(100) NOT NULL,
+  `pass` VARCHAR
+(255) NOT NULL,
+  `tipo` TINYINT
+(1) NOT NULL,
+  `creacion` TIMESTAMP NOT NULL,
+  PRIMARY KEY
+(`id_usuario`),
+  UNIQUE INDEX `email_UNIQUE`
+(`email` ASC));
+
 
 CREATE TABLE `restadvisor`.`comentarios`
 (
