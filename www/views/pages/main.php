@@ -1,11 +1,26 @@
 <?php
 $restaurantes = RestaurantesController::listarRestaurantesCtrl();
-
+// echo '<br><br><br>';
+// var_dump($_POST);
 //var_dump($restaurantes);
 ?>
 
 <div class="content container mt-5 bg-light">
+    <div class="row">
+        <div class="col d-flex justify-content-end pt-3">
+            <form class="form-inline" method="POST">
+                <input class="form-control mr-sm-2" name="buscar" type="search" placeholder="Buscar" aria-label="Search">
+                <select class="form-control mr-2" name="campo" id="campo">
+                    <option value="nombre">por nombre</option>
+                    <option value="localidad">por localidad</option>
+                    <option value="precio">por índice de precios</option>
+                    <option value="tipo_cocina">por tipo de cocina</option>
+                </select>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
 
+    </div>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pt-5 pb-3">
         <?php for ($i = 0; $i < count($restaurantes); $i++) : ?>
             <div href="#" class="col mb-4">
