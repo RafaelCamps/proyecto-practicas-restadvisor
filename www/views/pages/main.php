@@ -1,3 +1,9 @@
+<?php
+$restaurantes = RestaurantesController::listarRestaurantesCtrl();
+
+//var_dump($restaurantes);
+?>
+
 <div class="content container mt-5 bg-light">
 
 

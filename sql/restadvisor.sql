@@ -33,7 +33,7 @@ CREATE TABLE `restadvisor`.`restaurantes`
 (20) NULL,
   `imagen_principal` VARCHAR
 (75) NOT NULL,
-  `creacion` TIMESTAMP NOT NULL,
+`creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY
 (`id_restaurante`));
 
