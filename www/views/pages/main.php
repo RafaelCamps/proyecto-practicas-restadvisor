@@ -26,8 +26,17 @@ $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
 // var_dump($_POST);
 // echo '<br><br>Filtros:<br>';
 // var_dump($filtros);
-echo '<br><br>Restaurantes:<br>';
-var_dump($restaurantes);
+// echo '<br><br>Restaurantes:<br>';
+// var_dump($restaurantes);
+
+function mostrarEuros($num)
+{
+    $euros = "";
+    for ($i = 0; $i < $num; $i++) {
+        $euros .= "€";
+    }
+    return $euros;
+}
 
 ?>
 
@@ -60,12 +69,18 @@ var_dump($restaurantes);
         <?php for ($i = 0; $i < count($restaurantes); $i++) : ?>
             <div href="#" class="col mb-4">
                 <div class="card h-100">
-                    <img src="./public/img/<?= $restaurantes[$i]['id_restaurante'] . "/" . $restaurantes[$i]['imagen_principal'];  ?>" class="card-img-top" alt="...">
+                    <img src="./public/img/<?= $restaurantes[$i]['id_restaurante'] . "/" . $restaurantes[$i]['imagen_principal'];  ?>" class="card-img-top img-fluid img-card" alt="...">
                     <div class="card-body">
                         <a class="stretched-link text-decoration-none" href="#">
                             <h5 class="card-title text-center"><?= $restaurantes[$i]['nombre']; ?></h5>
                         </a>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="text-secondary"><?= $restaurantes[$i]['localidad']; ?></p>
+                        <p class="text-success">Precio: <?= mostrarEuros($restaurantes[$i]['precio']); ?></p>
+                        <p class="text-secondary">Valoración: <?= $restaurantes[$i]['valoracion']; ?></p>
+
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-info btn-block" href="tel:+<?= $restaurantes[$i]['telefono']; ?>">Llamar por teléfono</a>
                     </div>
                 </div>
             </div>
