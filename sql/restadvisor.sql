@@ -18,7 +18,8 @@ CREATE TABLE `restadvisor`.`restaurantes`
 (13) NOT NULL,
   `precio` TINYINT
 (1) NOT NULL,
-  `valoracion` DECIMAL NOT NULL,
+  `valoracion` DECIMAL
+(10,1) NOT NULL,
   `email` VARCHAR
 (75) NOT NULL,
   `web` VARCHAR
