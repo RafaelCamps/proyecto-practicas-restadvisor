@@ -26,8 +26,8 @@ $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
 // var_dump($_POST);
 // echo '<br><br>Filtros:<br>';
 // var_dump($filtros);
-// echo '<br><br>Restaurantes:<br>';
-// var_dump($restaurantes);
+echo '<br><br>Restaurantes:<br>';
+var_dump($restaurantes);
 
 ?>
 
@@ -65,7 +65,6 @@ $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
                         <a class="stretched-link text-decoration-none" href="#">
                             <h5 class="card-title text-center"><?= $restaurantes[$i]['nombre']; ?></h5>
                         </a>
-                        <p class="text-secondary"><?= $restaurantes[$i]['localidad']; ?></p>
                         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     </div>
                 </div>
