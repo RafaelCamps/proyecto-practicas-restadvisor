@@ -1,3 +1,7 @@
 .content {
   min-height: 86vh;
 }
+
+.img-card {
+  max-height: 200px;
+}
