@@ -19,7 +19,7 @@ if (isset($_POST['buscar'])) {
         "orden" => ""
     );
 }
-//echo '<br><br><br>';
+// echo '<br><br><br>';
 $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
 
 // echo '<br><br>Post:<br>';

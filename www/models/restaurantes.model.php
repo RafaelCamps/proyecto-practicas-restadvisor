@@ -33,7 +33,7 @@ class RestaurantesModel
 
             if ($localidad != "%%") {
                 if ($nombre != "%%") {
-                    $sql .= " OR localidad LIKE :localidad";
+                    $sql .= " AND localidad LIKE :localidad";
                 } else {
                     $sql .= "localidad LIKE :localidad";
                 }
@@ -43,22 +43,22 @@ class RestaurantesModel
                 if (($nombre == "%%") && ($localidad == "%%")) {
                     $sql .= "precio = :precio";
                 } else {
-                    $sql .= " OR precio = :precio";
+                    $sql .= " AND precio = :precio";
                 }
             }
 
             if ($tipo_cocina != "%%") {
                 if (($nombre == "%%") && ($localidad == "%%") && ($precio == "")) {
-                    $sql .= "tipo_cocina = :tipo_cocina";
+                    $sql .= "tipo_cocina LIKE :tipo_cocina";
                 } else {
-                    $sql .= " OR tipo_cocina = :tipo_cocina";
+                    $sql .= " AND tipo_cocina LIKE :tipo_cocina";
                 }
             }
 
             $sql .= " ORDER BY :orden";
 
 
-            //echo "<br> La consulta SQL es: <br> $sql";
+            // echo "<br> La consulta SQL es: <br> $sql";
 
             $consulta = Conexion::conectar()->prepare($sql);
             if ($nombre != "%%") {
