@@ -5,3 +5,8 @@
 .img-card {
   max-height: 200px;
 }
+
+#map {
+  height: 350px;
+  width: 100%;
+}

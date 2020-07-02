@@ -9,13 +9,15 @@ $restaurante = RestaurantesController::mostrarDatosRestaurante($id);
 
 ?>
 
+<div class="row px-5">
+    <a class="btn btn-outline-danger" href="index.php">Atrás</a>
+</div>
 
-<a class="btn btn-outline-danger" href="index.php">Atrás</a>
 
 <div class="col p-3">
     <div class="row my-2">
         <div class="col">
-            <h2 class="text-center my-3"><?= $restaurante['nombre']; ?></h2>
+            <h2 class="text-center h1 my-3" id="nombre"><?= $restaurante['nombre']; ?></h2>
         </div>
     </div>
     <div class="row my-2">
@@ -54,3 +56,4 @@ $restaurante = RestaurantesController::mostrarDatosRestaurante($id);
 
     </div>
 </div>
+<div id="map" lat="<?= $restaurante['latitud']; ?>" long="<?= $restaurante['longitud']; ?>"></div>
