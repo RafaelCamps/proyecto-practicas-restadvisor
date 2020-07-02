@@ -29,14 +29,7 @@ $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
 // echo '<br><br>Restaurantes:<br>';
 // var_dump($restaurantes);
 
-function mostrarEuros($num)
-{
-    $euros = "";
-    for ($i = 0; $i < $num; $i++) {
-        $euros .= "€";
-    }
-    return $euros;
-}
+
 
 ?>
 
@@ -71,7 +64,7 @@ function mostrarEuros($num)
                 <div class="card h-100">
                     <img src="./public/img/<?= $restaurantes[$i]['id_restaurante'] . "/" . $restaurantes[$i]['imagen_principal'];  ?>" class="card-img-top img-fluid img-card" alt="...">
                     <div class="card-body">
-                        <a class="stretched-link text-decoration-none" href="#">
+                        <a class="stretched-link text-decoration-none" href="index.php?restaurante=<?= $restaurantes[$i]['id_restaurante']; ?>">
                             <h5 class="card-title text-center"><?= $restaurantes[$i]['nombre']; ?></h5>
                         </a>
                         <p class="text-secondary"><?= $restaurantes[$i]['localidad']; ?></p>

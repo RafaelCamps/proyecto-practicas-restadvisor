@@ -6,6 +6,20 @@ require_once 'conexion.php';
 class RestaurantesModel
 {
 
+    /*===============================================================
+        CREATE - Insertar nuevos registros en la tabla restaurantes
+    =================================================================*/
+
+
+
+
+
+    /*===============================================================
+        READ - Leer datos de la BBBDD
+    =================================================================*/
+
+    /* Función para listar los restaurantes */
+
     static public function listarRestaurantesMdl($filtros)
     {
         if (empty($filtros['nombre']) && empty($filtros['localidad']) && empty($filtros['precio']) && empty($filtros['tipo_cocina'])) {
@@ -79,5 +93,18 @@ class RestaurantesModel
 
             return $resultado;
         }
+    }
+
+    /* Funcion para recoger todos los datos de 1 restaurante */
+
+    static public function mostrarRestauranteMdl($id)
+    {
+
+        $consulta = Conexion::conectar()->prepare("SELECT * FROM restaurantes WHERE id_restaurante = :id");
+        $consulta->bindParam(":id", $id, PDO::PARAM_INT);
+        $consulta->execute();
+        $resultado = $consulta->fetch();
+
+        return $resultado;
     }
 }
