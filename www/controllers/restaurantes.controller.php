@@ -9,6 +9,15 @@ class RestaurantesController{
 
     }
 
+    static public function mostrarDatosRestaurante($id){
+
+        $resultado = RestaurantesModel::mostrarRestauranteMdl($id);
+
+        return $resultado;
+
+    }
+
+
 }
 
 
