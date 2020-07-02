@@ -13,11 +13,25 @@
 
 <body>
 
+    <!-- CONTENIDO DEL FRONT -->
     <?php
     include_once 'views/components/header.php';
-    include_once 'views/pages/main.php';
+    ?>
+    <div class="content container mt-5 bg-light">
+        <?php
+        if (isset($_GET['restaurante'])) {
+            include_once 'views/pages/restaurante.php';
+        } else {
+            include_once 'views/pages/main.php';
+        }
+        ?>
+    </div>
+    <?php
     include_once 'views/components/footer.php';
     ?>
+
+    <!-- CONTENIDO DEL BACK -->
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
