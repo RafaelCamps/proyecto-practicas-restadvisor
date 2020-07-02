@@ -10,7 +10,7 @@ $restaurante = RestaurantesController::mostrarDatosRestauranteCtrl($id);
 ?>
 
 <div class="row px-5">
-    <a class="btn btn-outline-danger" href="index.php">Atrás</a>
+    <a class="btn btn-outline-danger" href="index.php"><i class="far fa-arrow-alt-circle-left mr-2"></i>Atrás</a>
 </div>
 <div class="row mt-3">
     <div class="col">
@@ -65,20 +65,20 @@ $restaurante = RestaurantesController::mostrarDatosRestauranteCtrl($id);
         </div>
         <div class="row my-4">
             <div class="col-md-6">
-                <h4 class="text-secondary text-center">Índice de precios: <span class="text-success"><?= mostrarEuros($restaurante['precio']); ?></span> </h4>
+                <h4 class="text-secondary text-center h5">Índice de precios: <span class="text-success"><?= mostrarEuros($restaurante['precio']); ?></span> </h4>
             </div>
             <div class="col-md-6">
-                <h4 class="text-secondary text-center">Valoración: <span class="text-warning"><?= $restaurante['valoracion']; ?></span></h4>
+                <h4 class="text-secondary text-center h5">Valoración: <span class="text-warning"><?= mostrarEstrellas($restaurante['valoracion']); ?></span></h4>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-12 col-lg-6 text-center">
-                <p><?= $restaurante['direccion']; ?></p>
+                <p class="mb-1"><?= $restaurante['direccion']; ?></p>
                 <p><?= $restaurante['cp']; ?> - <span><?= $restaurante['localidad']; ?></span></p>
                 <p>Teléfono: <a href="tel:+<?= $restaurante['telefono']; ?>"><?= $restaurante['telefono']; ?></a> </p>
             </div>
             <div class="col-12 col-lg-6 text-center">
-                <p>
+                <p class="mb-1">
                     <a href="<?= $restaurante['web']; ?>" target="_blank" rel="noopener noreferrer"><?= $restaurante['web']; ?></a>
                 </p>
 

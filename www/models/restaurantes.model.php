@@ -22,7 +22,7 @@ class RestaurantesModel
 
     static public function listarRestaurantesMdl($filtros)
     {
-        if (empty($filtros['nombre']) && empty($filtros['localidad']) && empty($filtros['precio']) && empty($filtros['tipo_cocina'])) {
+        if (empty($filtros['nombre']) && empty($filtros['localidad']) && empty($filtros['precio']) && empty($filtros['tipo_cocina']) && empty($filtros['orden'])) {
             $consulta = Conexion::conectar()->prepare("SELECT id_restaurante, nombre, localidad, precio, valoracion, telefono, imagen_principal  FROM restaurantes ORDER BY valoracion DESC LIMIT 5");
             $consulta->execute();
             $resultado = $consulta->fetchAll();
@@ -39,23 +39,23 @@ class RestaurantesModel
             //echo 'Filtros recibidos en Model:<br>';
             //var_dump($filtros);
 
-            $sql = "SELECT id_restaurante, nombre, localidad, precio, valoracion, telefono, imagen_principal FROM restaurantes WHERE ";
+            $sql = "SELECT id_restaurante, nombre, localidad, precio, valoracion, telefono, imagen_principal FROM restaurantes ";
 
             if ($nombre != "%%") {
-                $sql .= "nombre LIKE :nombre ";
+                $sql .= "WHERE nombre LIKE :nombre ";
             }
 
             if ($localidad != "%%") {
                 if ($nombre != "%%") {
                     $sql .= " AND localidad LIKE :localidad";
                 } else {
-                    $sql .= "localidad LIKE :localidad";
+                    $sql .= "WHERE localidad LIKE :localidad";
                 }
             }
 
             if ($precio != "") {
                 if (($nombre == "%%") && ($localidad == "%%")) {
-                    $sql .= "precio = :precio";
+                    $sql .= "WHERE precio = :precio";
                 } else {
                     $sql .= " AND precio = :precio";
                 }
@@ -63,16 +63,16 @@ class RestaurantesModel
 
             if ($tipo_cocina != "%%") {
                 if (($nombre == "%%") && ($localidad == "%%") && ($precio == "")) {
-                    $sql .= "tipo_cocina LIKE :tipo_cocina";
+                    $sql .= "WHERE tipo_cocina LIKE :tipo_cocina";
                 } else {
                     $sql .= " AND tipo_cocina LIKE :tipo_cocina";
                 }
             }
 
-            $sql .= " ORDER BY :orden";
+            // $sql .= " ORDER BY :orden";
+            $sql .= " ORDER BY $orden";
 
-
-            // echo "<br> La consulta SQL es: <br> $sql";
+            //echo "<br> La consulta SQL es: <br> $sql";
 
             $consulta = Conexion::conectar()->prepare($sql);
             if ($nombre != "%%") {
@@ -87,7 +87,7 @@ class RestaurantesModel
             if ($tipo_cocina != "%%") {
                 $consulta->bindParam(':tipo_cocina', $tipo_cocina, PDO::PARAM_STR);
             }
-            $consulta->bindParam(':orden', $orden, PDO::PARAM_STR);
+            //$consulta->bindParam(':orden', $orden, PDO::PARAM_STR);
             $consulta->execute();
             $resultado = $consulta->fetchAll();
 
@@ -110,7 +110,8 @@ class RestaurantesModel
 
     /* Función para listar las localidades */
 
-    static public function listarLocalidades(){
+    static public function listarLocalidades()
+    {
 
         $consulta = Conexion::conectar()->prepare("SELECT DISTINCT localidad FROM restaurantes");
         $consulta->execute();
@@ -118,5 +119,4 @@ class RestaurantesModel
 
         return $resultado;
     }
-
 }

@@ -7,6 +7,7 @@
     <title>RestAdvisor - Guía de restaurantes</title>
     <link rel="icon" id="favicon" href="public/img/logos/icono-verde.png" type="image/x-icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/plugins/fontawesome5/css/all.min.css">
     <link rel="stylesheet" href="../public/css/mystyles.css">
 
 </head>
