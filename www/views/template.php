@@ -17,7 +17,7 @@
     <?php
     include_once 'views/components/header.php';
     ?>
-    <div class="content container mt-5 px-0 py-3 bg-light">
+    <div class="content container mt-5 py-3 bg-light">
         <?php
         if (isset($_GET['restaurante'])) {
             include_once 'views/pages/restaurante.php';

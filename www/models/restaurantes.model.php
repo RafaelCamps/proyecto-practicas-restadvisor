@@ -107,4 +107,16 @@ class RestaurantesModel
 
         return $resultado;
     }
+
+    /* Función para listar las localidades */
+
+    static public function listarLocalidades(){
+
+        $consulta = Conexion::conectar()->prepare("SELECT DISTINCT localidad FROM restaurantes");
+        $consulta->execute();
+        $resultado = $consulta->fetchAll();
+
+        return $resultado;
+    }
+
 }

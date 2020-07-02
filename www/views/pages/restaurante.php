@@ -3,7 +3,7 @@
 //echo '<br><br><br>';
 $id = $_GET['restaurante'];
 
-$restaurante = RestaurantesController::mostrarDatosRestaurante($id);
+$restaurante = RestaurantesController::mostrarDatosRestauranteCtrl($id);
 
 //print_r($restaurante)
 
