@@ -29,14 +29,7 @@ $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
 // echo '<br><br>Restaurantes:<br>';
 // var_dump($restaurantes);
 
-function mostrarEuros($num)
-{
-    $euros = "";
-    for ($i = 0; $i < $num; $i++) {
-        $euros .= "€";
-    }
-    return $euros;
-}
+
 
 ?>
 

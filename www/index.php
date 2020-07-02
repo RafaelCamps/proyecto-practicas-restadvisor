@@ -1,5 +1,7 @@
 <?php
 
+require_once 'config/functions.php';
+
 require_once 'controllers/restaurantes.controller.php';
 require_once 'controllers/template.controller.php';
 
