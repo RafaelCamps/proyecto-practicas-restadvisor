@@ -1,3 +1,7 @@
+body {
+  box-sizing: border-box;
+}
+
 .content {
   min-height: 86vh;
 }
@@ -9,4 +13,13 @@
 #map {
   height: 350px;
   width: 100%;
+}
+
+.ficha {
+  background: white;
+  border: 1px solid #7b7e7b;
+  /* border-radius: 15px; */
+}
+.ficha:hover {
+  border: 2px solid #29da29;
 }

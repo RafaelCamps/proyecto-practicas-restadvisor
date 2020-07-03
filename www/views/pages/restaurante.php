@@ -1,16 +1,28 @@
 <?php
 
-//echo '<br><br><br>';
+// echo '<br><br><br>';
 $id = $_GET['restaurante'];
 
 $restaurante = RestaurantesController::mostrarDatosRestauranteCtrl($id);
 
 //print_r($restaurante)
+if (isset($_POST['reservarMesa'])) {
+    include_once 'views/components/reservaMesa.php';
+}
+
+//echo '<br><br><br>';
 
 ?>
 
-<div class="row px-5">
-    <a class="btn btn-outline-danger" href="index.php"><i class="far fa-arrow-alt-circle-left mr-2"></i>Atrás</a>
+<div class="row d-flex justify-content-between">
+    <div class="col12 col-md-3 mt-1">
+        <a class="btn btn-outline-danger w-100" href="index.php"><i class="far fa-arrow-alt-circle-left mr-2"></i>Atrás</a>
+    </div>
+    <div class="col-md-6 mt-1">
+        <button type="button" class="btn btn-outline-primary btn-block" data-toggle="modal" data-target="#reservaModal">
+            Reservar mesa
+        </button>
+    </div>
 </div>
 <div class="row mt-3">
     <div class="col">
@@ -96,3 +108,58 @@ $restaurante = RestaurantesController::mostrarDatosRestauranteCtrl($id);
 
 
 <div id="map" lat="<?= $restaurante['latitud']; ?>" long="<?= $restaurante['longitud']; ?>"></div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="reservaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="reservaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST">
+            <div class="modal-content">
+                <div class="modal-header bg-primary d-flex justify-content-center">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Reservar mesa</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> -->
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row m-1">
+                        <label class="col-md-3" for="nombre">Nombre:</label>
+                        <input type="text" class="form-control col-md-9" id="nombre" name="nombre" aria-describedby="nombreReserva" placeholder="Escriba su nombre completo" autofocus required>
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group row m-1">
+                        <label class="col-md-3" for="email">Email:</label>
+                        <input type="email" class="form-control col-md-9" id="email" name="email" aria-describedby="email" placeholder="Escriba su email" required>
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group row m-1">
+                        <label class="col-md-3" for="telefono">Teléfono:</label>
+                        <input type="tel" class="form-control col-md-9" id="telefono" name="telefono" aria-describedby="telefono" placeholder="Escriba su teléfono de contacto" required>
+                        <small id="emailHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-row mt-3">
+                        <div class="form-group col-md-5 text-center">
+                            <label for="inputFecha">Día</label>
+                            <input type="date" class="form-control" name="fecha" id="Fecha" min="<?= date('Y-m-d');  ?>" required>
+                            <input type="hidden" name="restaurante" value="<?= $restaurante['id_restaurante']; ?>">
+                        </div>
+                        <div class="form-group col-md-4 text-center">
+                            <label for="inputHora">Hora</label>
+                            <input type="time" class="form-control" name="hora" id="hora" step="300" required>
+                        </div>
+                        <div class="form-group col-md-3 text-center">
+                            <label for="inputPax">Comensales</label>
+                            <input type="number" class="form-control" name="pax" id="inputPax" min="1" max="15" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" name="reservarMesa">Solicitar reserva</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

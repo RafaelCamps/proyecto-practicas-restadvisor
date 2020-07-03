@@ -67,7 +67,7 @@ $localidades = RestaurantesController::listarLocalidadesCtrl();
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 pt-5 pb-3">
         <?php for ($i = 0; $i < count($restaurantes); $i++) : ?>
             <div href="#" class="col mb-4">
-                <div class="card h-100">
+                <div class="card h-100 ficha shadow">
                     <img src="./public/img/<?= $restaurantes[$i]['id_restaurante'] . "/" . $restaurantes[$i]['imagen_principal'];  ?>" class="card-img-top img-fluid img-card" alt="...">
                     <div class="card-body">
                         <a class="stretched-link text-decoration-none" href="index.php?restaurante=<?= $restaurantes[$i]['id_restaurante']; ?>">
