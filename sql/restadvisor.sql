@@ -1,91 +1,140 @@
-SET SQL_MODE
-= "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone
-= "+01:00";
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: db-restadvisor
+-- Tiempo de generación: 02-07-2020 a las 17:41:17
+-- Versión del servidor: 8.0.20
+-- Versión de PHP: 7.4.6
 
-CREATE TABLE `restadvisor`.`restaurantes`
-(
-  `id_restaurante` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR
-(75) NOT NULL,
-  `localidad` VARCHAR
-(75) NOT NULL,
-  `direccion` VARCHAR
-(100) NOT NULL,
-  `cp` VARCHAR
-(7) NOT NULL,
-  `telefono` VARCHAR
-(13) NOT NULL,
-  `precio` TINYINT
-(1) NOT NULL,
-  `valoracion` DECIMAL
-(10,1) NOT NULL,
-  `email` VARCHAR
-(75) NOT NULL,
-  `web` VARCHAR
-(75) NULL,
-  `horario` VARCHAR
-(75) NULL,
-  `tipo_cocina` VARCHAR
-(75) NOT NULL,
-  `longitud` VARCHAR
-(20) NULL,
-  `latitud` VARCHAR
-(20) NULL,
-  `imagen_principal` VARCHAR
-(75) NOT NULL,
-`creacion` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY
-(`id_restaurante`));
-
-CREATE TABLE `restadvisor`.`usuarios`
-(
-  `id_usuario` INT NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR
-(75) NOT NULL,
-  `email` VARCHAR
-(100) NOT NULL,
-  `pass` VARCHAR
-(255) NOT NULL,
-  `tipo` TINYINT
-(1) NOT NULL,
-  `creacion` TIMESTAMP NOT NULL,
-  PRIMARY KEY
-(`id_usuario`),
-  UNIQUE INDEX `email_UNIQUE`
-(`email` ASC));
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
 
-CREATE TABLE `restadvisor`.`comentarios`
-(
-  `id_comentario` INT NOT NULL AUTO_INCREMENT,
-  `id_restaurante` INT NOT NULL,
-  `id_usuario` INT NOT NULL,
-  `valoracion` TINYINT
-(1) NOT NULL,
-  `comentario` MEDIUMTEXT NOT NULL,
-  `creacion` TIMESTAMP NOT NULL,
-  PRIMARY KEY
-(`id_comentario`),
-  INDEX `fk_restaurante_idx`
-(`id_restaurante` ASC),
-  INDEX `fk_usuario_idx`
-(`id_usuario` ASC),
-  CONSTRAINT `fk_restaurante`
-    FOREIGN KEY
-(`id_restaurante`)
-    REFERENCES `restadvisor`.`restaurantes`
-(`id_restaurante`)
-    ON
-DELETE CASCADE
-    ON
-UPDATE CASCADE,
-  CONSTRAINT `fk_usuario`
-    FOREIGN KEY
-(`id_usuario`)
-    REFERENCES `restadvisor`.`usuarios`
-(`id_usuario`)
-    ON
-DELETE CASCADE
-    ON
-UPDATE CASCADE);
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `restadvisor`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id_comentario` int NOT NULL,
+  `id_restaurante` int NOT NULL,
+  `id_usuario` int NOT NULL,
+  `valoracion` tinyint(1) NOT NULL,
+  `comentario` mediumtext NOT NULL,
+  `creacion` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `restaurantes`
+--
+
+CREATE TABLE `restaurantes` (
+  `id_restaurante` int NOT NULL,
+  `nombre` varchar(75) NOT NULL,
+  `localidad` varchar(75) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `cp` varchar(7) NOT NULL,
+  `telefono` varchar(13) NOT NULL,
+  `precio` tinyint(1) NOT NULL,
+  `valoracion` decimal(10,1) NOT NULL,
+  `email` varchar(75) NOT NULL,
+  `web` varchar(75) DEFAULT NULL,
+  `horario` varchar(75) DEFAULT NULL,
+  `tipo_cocina` varchar(75) NOT NULL,
+  `longitud` varchar(20) DEFAULT NULL,
+  `latitud` varchar(20) DEFAULT NULL,
+  `imagen_principal` varchar(75) NOT NULL,
+  `creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int NOT NULL,
+  `nombre` varchar(75) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `pass` varchar(255) NOT NULL,
+  `tipo` tinyint(1) NOT NULL,
+  `creacion` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `fk_restaurante_idx` (`id_restaurante`),
+  ADD KEY `fk_usuario_idx` (`id_usuario`);
+
+--
+-- Indices de la tabla `restaurantes`
+--
+ALTER TABLE `restaurantes`
+  ADD PRIMARY KEY (`id_restaurante`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id_comentario` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `restaurantes`
+--
+ALTER TABLE `restaurantes`
+  MODIFY `id_restaurante` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `fk_restaurante` FOREIGN KEY (`id_restaurante`) REFERENCES `restaurantes` (`id_restaurante`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
