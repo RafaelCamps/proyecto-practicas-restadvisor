@@ -107,10 +107,7 @@ if (isset($_POST['reservarMesa'])) {
 </div>
 
 
-<div id="map" lat="<?= $restaurante['latitud']; ?>" long="<?= $restaurante['longitud']; ?>"></div>
-
-
-
+<div class="map-rest" id="map" lat="<?= $restaurante['latitud']; ?>" long="<?= $restaurante['longitud']; ?>"></div>
 
 <!-- Modal -->
 <div class="modal fade" id="reservaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="reservaModalLabel" aria-hidden="true">

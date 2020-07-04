@@ -11,8 +11,11 @@ body {
 }
 
 #map {
-  height: 350px;
+  height: 75vh;
   width: 100%;
+}
+#map.map-rest {
+  height: 350px;
 }
 
 .ficha {
