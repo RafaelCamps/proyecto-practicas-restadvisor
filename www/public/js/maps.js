@@ -5,19 +5,19 @@ function initMap() {
   if (document.getElementById("nombre")) {
     // Guardamos el valor del elemento en un variable.
     var nombre = document.getElementById("nombre").innerText;
-    console.log(nombre);
+    //console.log(nombre);
     //Recogemos las coordenadas del restaurante
     var lat = parseFloat(
       document.getElementById("map").attributes["lat"].value
     );
-    console.log(lat);
+    // console.log(lat);
     var long = parseFloat(
       document.getElementById("map").attributes["long"].value
     );
-    console.log(long);
+    // console.log(long);
     // Creamos una variable "restaurante" con los valores de latitud y longitud.
     var restaurante = { lat: lat, lng: long };
-    console.log(restaurante);
+    // console.log(restaurante);
     // Creamos el mapa, centrado en el restaurante
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 18,
@@ -53,11 +53,11 @@ function initMap() {
           restaurantes[i].id_restaurante +
           "/" +
           restaurantes[i].imagen +
-          "'><h2>" +
-          restaurantes[i].nombre +
-          "</h2><a href='index.php?restaurante=" +
+          "' width='200px'><a href='index.php?restaurante=" +
           restaurantes[i].id_restaurante +
-          "'>Ver ficha restaurante</a>",
+          "'><h2 class='text-center h5 p-2 mt-3'>" +
+          restaurantes[i].nombre +
+          "</h2></a>",
       };
       //console.log(restaurantes[i]);
       markers.push(rest);
@@ -77,25 +77,17 @@ function initMap() {
         map: map,
         icon: icono,
         title: props.title,
-
       });
 
-      // if (props.content) {
-      //   var infoWindow = new google.maps.infoWindow({
-      //     content: props.content,
-      //   });
+      if (props.content) {
+        var infowindow = new google.maps.InfoWindow({
+          content: props.content,
+        });
 
-      //   marker.addListener("click", function () {
-      //     infoWindow.open(map, marker);
-      //   });
-      // }
+        marker.addListener("click", function () {
+          infowindow.open(map, marker);
+        });
+      }
     }
   }
-
-  //   var marker = new google.maps.Marker({
-  //     position: myLatLng,
-  //     map: map,
-  //     icon: "../img/logos/icono-verde.png",
-  //     title: "Hello World!",
-  //   });
 }
