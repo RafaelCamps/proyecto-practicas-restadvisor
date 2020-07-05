@@ -1,5 +1,16 @@
 var icono = "public/img/logos/icono-mapa.png";
 
+var zoom = 10;
+//console.log("zoom inicial", zoom);
+document.getElementById("distancia").addEventListener("change", function () {
+  var valor = document.getElementById("distancia").value;
+  //console.log("valor range", valor);
+  zoom = 22 - valor;
+
+  initMap();
+  //console.log("valor zoom", zoom);
+});
+
 function initMap() {
   //Comprobamos si existe un elemento con ID="nombre" eso significará que estamos en la ficha de un restaurante
   if (document.getElementById("nombre")) {
@@ -53,7 +64,8 @@ function initMap() {
 
     // En el caso de que no tengamos un restaurante seleccionado, crearemos un mapa mostrando todos los restaurantes del listado centrado en la ubicación del usuario.
     var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 10,
+      //zoom: 10,
+      zoom: zoom,
       center: userPosition,
     });
     // console.log("userPosition después de crear el mapa", userPosition);
