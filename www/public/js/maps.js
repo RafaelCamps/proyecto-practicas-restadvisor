@@ -1,15 +1,19 @@
 var icono = "public/img/logos/icono-mapa.png";
 
-var zoom = 10;
-//console.log("zoom inicial", zoom);
-document.getElementById("distancia").addEventListener("change", function () {
-  var valor = document.getElementById("distancia").value;
-  //console.log("valor range", valor);
-  zoom = 22 - valor;
+var input_range = document.getElementById("distancia");
 
-  initMap();
-  //console.log("valor zoom", zoom);
-});
+if (input_range) {
+  var zoom = 10;
+  //console.log("zoom inicial", zoom);
+  document.getElementById("distancia").addEventListener("change", function () {
+    var valor = document.getElementById("distancia").value;
+    //console.log("valor range", valor);
+    zoom = 22 - valor;
+
+    initMap();
+    //console.log("valor zoom", zoom);
+  });
+}
 
 function initMap() {
   //Comprobamos si existe un elemento con ID="nombre" eso significará que estamos en la ficha de un restaurante
@@ -41,6 +45,29 @@ function initMap() {
       map: map,
       icon: icono,
       title: nombre,
+    });
+  } else if (document.getElementById("contacto")) {
+    var restAdvisor = { lat: 39.552192, lng: 2.692828 };
+
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 15,
+      center: restAdvisor,
+    });
+
+    // Creamos un marcador, posicionado en el restaurante
+    var marker = new google.maps.Marker({
+      position: restAdvisor,
+      map: map,
+      icon: icono,
+      title: "RestAdvisor",
+    });
+    var infowindow = new google.maps.InfoWindow({
+      content:
+        '<div class="text-center"><img src="public/img/logos/logo-redondo.png" width="80px"></div><div><a href="#"><h4 class="text-success text-center"> RestAdvisor.es</h4></a></div>',
+    });
+
+    marker.addListener("click", function () {
+      infowindow.open(map, marker);
     });
   } else {
     // Recuperamos los datos del localStorage, que hemos guardado si el usuario permite acceder a su ubicación

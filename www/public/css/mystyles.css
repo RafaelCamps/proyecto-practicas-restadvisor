@@ -14,7 +14,8 @@ body {
   height: 75vh;
   width: 100%;
 }
-#map.map-rest {
+#map.map-rest,
+#map.mapaContacto {
   height: 350px;
 }
 
