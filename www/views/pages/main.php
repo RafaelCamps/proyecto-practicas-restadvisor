@@ -83,6 +83,12 @@ $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
             <?php include_once 'listado.php'; ?>
         </div>
         <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="mt-2 px-3">
+                <div class="form-group row">
+                    <label for="distancia">Distancia:</label>
+                    <input type="range" class="form-control-range" id="formControlRange">
+                </div>
+            </div>
             <div class="mt-2 pt-2 pb-3" id="map"></div>
         </div>
 
