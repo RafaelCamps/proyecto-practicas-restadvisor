@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../public/plugins/fontawesome5/css/all.min.css">
     <link rel="stylesheet" href="../public/css/mystyles.css">
 
-
+    <script src="public/js/userPosition.js"></script>
 
 </head>
 
@@ -37,7 +37,6 @@
     <?php if (isset($restaurantes)) : ?>
 
         <script>
-            
             var restaurantes = JSON.parse(JSON.stringify(<?= RestaurantesController::listadoRestaurantesMapa($filtros); ?>));
             //console.log(restaurantes);
         </script>
@@ -46,8 +45,11 @@
 
     <!-- CONTENIDO DEL BACK -->
 
-    <script src="public/js/maps.js"></script>
+
+
+
     <!-- GOOGLE Maps -->
+    <script src="public/js/maps.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQWdqdCDlzNSmfaX4ph_U8Z5ha7y-xV6U&callback=initMap">
     </script>
     <!-- Notifier.js -->

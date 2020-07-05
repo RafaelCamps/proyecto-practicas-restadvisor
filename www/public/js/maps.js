@@ -32,11 +32,31 @@ function initMap() {
       title: nombre,
     });
   } else {
-    // En el caso de que no tengamos un restaurante seleccionado, mostramos el mapa general
+    // Recuperamos los datos del localStorage, que hemos guardado si el usuario permite acceder a su ubicación
+    var latitud = localStorage.getItem("lat");
+    var longitud = localStorage.getItem("lng");
+
+    //Creamos la variable userPosition, que le va a indicar el centro al mapa
+    var userPosition = { lat: 0, lng: 0 };
+    // console.log("userPosition al ser declarado : ", userPosition);
+
+    //Comprobamos si tenemos los datos de la ubicación en el localStorage
+    if (latitud) {
+      //Si tenemos los datos, los asignamos a las propiedades del objeto userPosition
+      userPosition.lat = parseFloat(latitud);
+      userPosition.lng = parseFloat(longitud);
+    } else {
+      //Si no tenemos datos, le asignamos unas coordenadas por defecto (centro de Mallorca)
+      userPosition.lat = 39.642306;
+      userPosition.lng = 3.006223;
+    }
+
+    // En el caso de que no tengamos un restaurante seleccionado, crearemos un mapa mostrando todos los restaurantes del listado centrado en la ubicación del usuario.
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 10,
-      center: { lat: 39.642306, lng: 3.006223 },
+      center: userPosition,
     });
+    // console.log("userPosition después de crear el mapa", userPosition);
 
     // Cogemos el listado de restaurantes y mediante un bucle creamos un array de markers
     var markers = [];
