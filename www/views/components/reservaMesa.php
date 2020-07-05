@@ -14,7 +14,6 @@ $mail->IsSMTP();
 //Configuracion servidor mail
 
 $mail->setFrom('restadvisor@gmail.com', 'RestAdvisor'); // Estableciendo como quién se va a enviar el mail
-// $mail->From = "restadvisor.es@gmail.com"; //remitente
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls'; //seguridad
 $mail->Host = "smtp.gmail.com"; // servidor smtp
@@ -30,7 +29,7 @@ $mail->Password = 'buscadorderestaurantes'; //contraseña
 //$destinatario = $restaurante['email']; Descomentar esta línea cuando esté funcionando!!
 $destinatario = $_POST['email']; // Se enviará al email puesto en el formulario de reserva, para hacer pruebas!!
 $asunto = "Solicitud para reservar una mesa el " . date('d-m-Y', strtotime($_POST['fecha'])) . " a las " . $_POST['hora'] . "";
-$mensaje = "Nombre: " . $_POST['nombre'] . "<br>Teléfono: " . $_POST['telefono'] . "<br>Email: " . $_POST['email'] . "<br>Comensales: " . $_POST['pax'] . "<br><br>Reserva recibida desde RestAdvisor.es";
+$mensaje = "<h2>Reserva de mesa en el restaurante " . $restaurante['nombre'] . "</h2>Nombre: " . $_POST['nombre'] . "<br>Teléfono: " . $_POST['telefono'] . "<br>Email: " . $_POST['email'] . "<br>Comensales: " . $_POST['pax'] . "<br><br>Reserva recibida desde RestAdvisor.es";
 
 // Agregando compatibilidad con HTML
 $mail->Debugoutput = 'html';
@@ -49,16 +48,13 @@ $mail->MsgHTML($mensaje);
 // Para comprobar cual es el error, si nos da un fallo, debemos cambiar el valor a "2", cuando funcione, dejar el valor en "0"
 $mail->SMTPDebug = 0;
 
-
-//$notificacion = "En breve el restaurante " . $restaurante['nombre'] . " se pondrá en contacto contigo para confirmar la reserva";
-
 // Enviando el mensaje y controlando los errores, avisar si fue enviado o no y dirigir al index
 if ($mail->Send()) {
     echo '<script>
 
     document.addEventListener("DOMContentLoaded", function(event) {
         
-        Notifier.success("El restaurante te confirmará la reserva en breve","Solicitud enviada");
+        Notifier.success("El restaurante te confirmará la reserva en breve","Solicitud de reserva enviada");
   });
      
         </script>';

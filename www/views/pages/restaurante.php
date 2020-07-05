@@ -116,15 +116,12 @@ if (isset($_POST['reservarMesa'])) {
             <div class="modal-content">
                 <div class="modal-header bg-primary d-flex justify-content-center">
                     <h5 class="modal-title text-white" id="exampleModalLabel">Reservar mesa</h5>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button> -->
                 </div>
                 <div class="modal-body">
                     <div class="form-group row m-1">
                         <label class="col-md-3" for="nombre">Nombre:</label>
                         <input type="text" class="form-control col-md-9" id="nombre" name="nombre" aria-describedby="nombreReserva" placeholder="Escriba su nombre completo" autofocus required>
-                        <small id="emailHelp" class="form-text text-muted"></small>
+                        <small id="nombreHelp" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group row m-1">
                         <label class="col-md-3" for="email">Email:</label>
@@ -134,13 +131,14 @@ if (isset($_POST['reservarMesa'])) {
                     <div class="form-group row m-1">
                         <label class="col-md-3" for="telefono">Teléfono:</label>
                         <input type="tel" class="form-control col-md-9" id="telefono" name="telefono" aria-describedby="telefono" placeholder="Escriba su teléfono de contacto" required>
-                        <small id="emailHelp" class="form-text text-muted"></small>
+                        <small id="telefonoHelp" class="form-text text-muted"></small>
                     </div>
                     <div class="form-row mt-3">
                         <div class="form-group col-md-5 text-center">
                             <label for="inputFecha">Día</label>
                             <input type="date" class="form-control" name="fecha" id="Fecha" min="<?= date('Y-m-d');  ?>" required>
                             <input type="hidden" name="restaurante" value="<?= $restaurante['id_restaurante']; ?>">
+                            <!-- <input type="hidden" name="restaurante" value="<?= $restaurante['nombre']; ?>"> -->
                         </div>
                         <div class="form-group col-md-4 text-center">
                             <label for="inputHora">Hora</label>
