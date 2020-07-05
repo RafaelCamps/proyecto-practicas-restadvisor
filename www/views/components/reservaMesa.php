@@ -58,7 +58,6 @@ if ($mail->Send()) {
 
     document.addEventListener("DOMContentLoaded", function(event) {
         
-        console.log("DOM fully loaded and parsed");
         Notifier.success("El restaurante te confirmará la reserva en breve","Solicitud enviada");
   });
      

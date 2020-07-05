@@ -23,7 +23,7 @@ class RestaurantesModel
     static public function listarRestaurantesMdl($filtros)
     {
         if (empty($filtros['nombre']) && empty($filtros['localidad']) && empty($filtros['precio']) && empty($filtros['tipo_cocina']) && empty($filtros['orden'])) {
-            $consulta = Conexion::conectar()->prepare("SELECT id_restaurante, nombre, localidad, precio, valoracion, telefono, imagen_principal  FROM restaurantes ORDER BY valoracion DESC LIMIT 5");
+            $consulta = Conexion::conectar()->prepare("SELECT id_restaurante, nombre, localidad, precio, valoracion, telefono, latitud, longitud, imagen_principal  FROM restaurantes ORDER BY valoracion DESC LIMIT 5");
             $consulta->execute();
             $resultado = $consulta->fetchAll();
 
@@ -39,7 +39,7 @@ class RestaurantesModel
             //echo 'Filtros recibidos en Model:<br>';
             //var_dump($filtros);
 
-            $sql = "SELECT id_restaurante, nombre, localidad, precio, valoracion, telefono, imagen_principal FROM restaurantes ";
+            $sql = "SELECT id_restaurante, nombre, localidad, precio, valoracion, telefono, latitud, longitud, imagen_principal FROM restaurantes ";
 
             if ($nombre != "%%") {
                 $sql .= "WHERE nombre LIKE :nombre ";

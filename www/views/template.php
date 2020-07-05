@@ -33,6 +33,17 @@
     include_once 'views/components/footer.php';
     ?>
 
+    <!-- Si estamos en el front y tenemos un listado de restaurantes, con esto crearemos la variable que contendrá el JSON -->
+    <?php if (isset($restaurantes)) : ?>
+
+        <script>
+            
+            var restaurantes = JSON.parse(JSON.stringify(<?= RestaurantesController::listadoRestaurantesMapa($filtros); ?>));
+            //console.log(restaurantes);
+        </script>
+
+    <?php endif ?>
+
     <!-- CONTENIDO DEL BACK -->
 
     <script src="public/js/maps.js"></script>
