@@ -18,26 +18,40 @@
 
     <!-- CONTENIDO DEL FRONT -->
     <?php
-    include_once 'views/components/header.php';
+    if (isset($_GET['registro'])) {
+        //Mostramos el formulario de registro
+        include_once 'views/pages/registro.php';
+    } elseif (isset($_GET['login'])) {
+        //Mostramos el formulario de login
+
+    } elseif (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
+        //Mostramos el back
+    } else {
+        //Mostramos el front
+
+        include_once 'views/components/header.php';
     ?>
-    <div class="content container mt-5 py-3 bg-light">
-        <?php
-        if (isset($_GET['restaurante'])) {
-            include_once 'views/pages/restaurante.php';
-        } elseif (isset($_GET['pagina'])){
-            if($_GET['pagina'] == "contacto"||
-                $_GET['pagina'] == "nosotros"
-            ){
-                include_once 'views/pages/'.$_GET['pagina'].'.php';
+        <div class="content container mt-5 py-3 bg-light">
+            <?php
+            if (isset($_GET['restaurante'])) {
+                include_once 'views/pages/restaurante.php';
+            } elseif (isset($_GET['pagina'])) {
+                if (
+                    $_GET['pagina'] == "contacto" ||
+                    $_GET['pagina'] == "nosotros"
+                ) {
+                    include_once 'views/pages/' . $_GET['pagina'] . '.php';
+                }
+            } else {
+                include_once 'views/pages/main.php';
             }
-        } else {
-            include_once 'views/pages/main.php';
-        }
-        ?>
-    </div>
+            ?>
+        </div>
     <?php
-    include_once 'views/components/footer.php';
+        include_once 'views/components/footer.php';
+    }
     ?>
+
 
     <!-- Si estamos en el front y tenemos un listado de restaurantes, con esto crearemos la variable que contendrá el JSON -->
     <?php if (isset($restaurantes)) : ?>
@@ -53,12 +67,13 @@
 
 
 
-
-    <!-- GOOGLE Maps -->
-    <script src="public/js/maps.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQWdqdCDlzNSmfaX4ph_U8Z5ha7y-xV6U&callback=initMap">
-    </script>
-    <!-- Notifier.js -->
+    <?php if ($mapa) : ?>
+        <!-- GOOGLE Maps -->
+        <script src="public/js/maps.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQWdqdCDlzNSmfaX4ph_U8Z5ha7y-xV6U&callback=initMap">
+        </script>
+        <!-- Notifier.js -->
+    <?php endif; ?>
     <script src="public/plugins/NotifierJs/Notifier.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
