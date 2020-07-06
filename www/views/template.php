@@ -25,7 +25,9 @@
         if (isset($_GET['restaurante'])) {
             include_once 'views/pages/restaurante.php';
         } elseif (isset($_GET['pagina'])){
-            if($_GET['pagina'] == "contacto"){
+            if($_GET['pagina'] == "contacto"||
+                $_GET['pagina'] == "nosotros"
+            ){
                 include_once 'views/pages/'.$_GET['pagina'].'.php';
             }
         } else {

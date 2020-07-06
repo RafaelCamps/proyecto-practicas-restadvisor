@@ -13,7 +13,7 @@
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item mx-3">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="index.php?pagina=nosotros">About</a>
             </li>
             <li class="nav-item  mx-3">
                 <a class="nav-link" href="index.php?pagina=contacto">Contacto</a>
