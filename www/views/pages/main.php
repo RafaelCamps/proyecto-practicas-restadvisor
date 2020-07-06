@@ -23,7 +23,7 @@ if (isset($_POST['buscar'])) {
 $localidades = RestaurantesController::listarLocalidadesCtrl();
 $restaurantes = RestaurantesController::listarRestaurantesCtrl($filtros);
 
-
+$mapa = true;
 // echo '<br><br>Post:<br>';
 // var_dump($_POST);
 // echo '<br><br>Filtros:<br>';

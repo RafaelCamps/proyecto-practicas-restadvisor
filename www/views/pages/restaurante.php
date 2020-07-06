@@ -10,6 +10,8 @@ if (isset($_POST['reservarMesa'])) {
     include_once 'views/components/reservaMesa.php';
 }
 
+$mapa = true;
+
 //echo '<br><br><br>';
 
 ?>

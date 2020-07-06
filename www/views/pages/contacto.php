@@ -1,4 +1,5 @@
 <?php
+$mapa = true;
 // echo "<br><br><br>";
 // var_dump($_POST);
 

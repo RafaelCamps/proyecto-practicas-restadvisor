@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto mr-3">
             <li class="nav-item  mx-3 active">
-                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.php"><i class="fas fa-home"></i><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item mx-3">
                 <a class="nav-link" href="index.php?pagina=nosotros">About</a>
@@ -18,9 +18,12 @@
             <li class="nav-item  mx-3">
                 <a class="nav-link" href="index.php?pagina=contacto">Contacto</a>
             </li>
+            <li class="nav-item  mx-3 pt-1">
+                <a class="btn btn-outline-success btn-sm my-2 my-sm-0" href="index.php?registro"> <i class="far fa-user mr-2"></i> Acceder</a>
+            </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0 pr-5">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Iniciar Sesión</button>
-        </form>
+        <!-- <form class="form-inline my-2 my-lg-0 pr-5">
+            <button type="submit">Iniciar Sesión</button>
+        </form> -->
     </div>
 </nav>
