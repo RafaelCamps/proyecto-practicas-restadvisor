@@ -84,10 +84,6 @@ if (isset($_POST['login'])) {
             <div class="alert alert-danger text-center" role="alert">
                 <?= $error; ?>
             </div>
-        <?php else : ?>
-            <div class="alert alert-success text-center" role="alert">
-                Bienvenido usuario!
-            </div>
         <?php endif ?>
 
         <button class="btn btn-lg btn-success btn-block" name="login" type="submit">Acceder</button>
