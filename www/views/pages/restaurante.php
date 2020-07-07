@@ -1,7 +1,7 @@
 <?php
 $mapa = true; // Esto identifica si en la página debe aparecer un mapa
 
-echo '<br><br><br>';
+// echo '<br><br><br>';
 $id = $_GET['restaurante'];
 
 $restaurante = RestaurantesController::mostrarDatosRestauranteCtrl($id);
@@ -11,12 +11,41 @@ if (isset($_POST['reservarMesa'])) {
     include_once 'views/components/reservaMesa.php';
 }
 
+// Comprobamos si estamos recibiendo un comentario
 if (isset($_POST['enviarComentario'])) {
 
-    var_dump($_POST);
+    $datos = array(
+        "restaurante" => $_POST['restaurante'],
+        "usuario" => $_POST['user'],
+        "titulo" => $_POST['titulo'],
+        "valoracion" => $_POST['valoracion'],
+        "comentario" => $_POST['comentario'],
+    );
+
+    //Si los datos recibidos son correctos, insertamos el comentario en la BBDD.
+    $respuesta = ComentariosController::crearComentarioCtrl($datos);
+    if ($respuesta == "ok") {
+        echo '<script>
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        
+        Notifier.success("¡Muchas gracias por tu valoración!","¡Comentario creado con éxito!");
+
+        
+  });
+     
+        </script>';
+    } else {
+        echo "Error al crear el comentario!";
+    }
+    //var_dump($datos);
 }
 
+//Recuperar de la BBDD los comentarios de ese restaurante.
 
+$comentarios = ComentariosController::obtenerComentariosCtrl($id);
+// echo '<br><br><br>';
+// var_dump($comentarios);
 //echo '<br><br><br>';
 
 ?>
@@ -31,6 +60,9 @@ if (isset($_POST['enviarComentario'])) {
         </button>
     </div>
 </div>
+
+<!-- Ficha del restaurante -->
+
 <div class="row mt-3">
     <div class="col">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -132,42 +164,23 @@ if (isset($_POST['enviarComentario'])) {
             <?php endif; ?>
         </div>
     </div>
-    <article class="mx-5 my-2 px-2 bg-white border border-success rounded row comentario">
-        <div class="user col-md-3 py-3 d-flex flex-column align-items-center">
-            <img class="img-fluid imgComm" src="public/img/users/user-default.png" alt="">
-            <p class="m-1">Nombre Usuario</p>
-            <p class="m-0 text-secondary"><small>Nº Comentarios</small></p>
-        </div>
-        <div class="comment col-md-9 p-3">
-            <h4 class="text-info">Título comentario</h4>
-            <small class="text-info">Fecha comentario</small>
-            <p class="text-secondary">Comentario Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eius qui dignissimos obcaecati nemo, possimus natus consequatur, aspernatur nihil vitae molestias rerum iste a, eaque vero sequi itaque! Magnam, obcaecati.</p>
-        </div>
-    </article>
-    <article class="mx-5 my-2 px-2 bg-white border border-success rounded row comentario">
-        <div class="user col-md-3 py-3 d-flex flex-column align-items-center">
-            <img class="img-fluid imgComm" src="public/img/users/user-default.png" alt="">
-            <p class="m-1">Nombre Usuario</p>
-            <p class="m-0 text-secondary"><small>Nº Comentarios</small></p>
-        </div>
-        <div class="comment col-md-9 p-3">
-            <h4 class="text-info">Título comentario</h4>
-            <small class="text-info">Fecha comentario</small>
-            <p class="text-secondary">Comentario Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eius qui dignissimos obcaecati nemo, possimus natus consequatur, aspernatur nihil vitae molestias rerum iste a, eaque vero sequi itaque! Magnam, obcaecati.</p>
-        </div>
-    </article>
-    <article class="mx-5 my-2 px-2 bg-white border border-success rounded row comentario">
-        <div class="user col-md-3 p-3 d-flex flex-column align-items-center">
-            <img class="img-fluid imgComm" src="public/img/users/user-default.png" alt="">
-            <p class="m-1">Nombre Usuario</p>
-            <p class="m-0 text-secondary"><small>Nº Comentarios</small></p>
-        </div>
-        <div class="comment col-md-9 p-3">
-            <h4 class="text-info">Título comentario</h4>
-            <small class="text-info">Fecha comentario</small>
-            <p class="text-secondary">Comentario Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eius qui dignissimos obcaecati nemo, possimus natus consequatur, aspernatur nihil vitae molestias rerum iste a, eaque vero sequi itaque! Magnam, obcaecati.</p>
-        </div>
-    </article>
+    <?php if ($comentarios > 0) : ?>
+        <?php for ($i = 0; $i < count($comentarios); $i++) : ?>
+            <article class="mx-5 my-2 px-2 bg-white border border-success rounded row comentario">
+                <div class="user col-md-3 py-3 d-flex flex-column align-items-center">
+                    <img class="img-fluid imgComm" src="public/img/users/user-default.png" alt="">
+                    <p class="m-1">Nombre Usuario </p>
+                    <p class="m-0 text-secondary"><small>Nº Comentarios</small></p>
+                </div>
+                <div class="comment col-md-9 p-3">
+                    <h4 class="text-info"><?= $comentarios[$i]['titulo']; ?></h4>
+                    <small class="text-info"><?= date("d-m-Y", strtotime($comentarios[$i]['creacion'])); ?></small>
+                    <h5>Valoración: <span class="text-warning"><?= mostrarEstrellas($comentarios[$i]['valoracion']); ?></span></h5>
+                    <p class="text-secondary"><?= $comentarios[$i]['comentario']; ?></p>
+                </div>
+            </article>
+        <?php endfor; ?>
+    <?php endif; ?>
 </section>
 
 
@@ -230,7 +243,7 @@ if (isset($_POST['enviarComentario'])) {
                 <div class="modal-header bg-success d-flex justify-content-center">
                     <h5 class="modal-title text-white" id="exampleModalLabel">Nuevo comentario</h5>
                     <input type="hidden" name="restaurante" value="<?= $restaurante['id_restaurante']; ?>">
-                    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
+                    <input type="hidden" name="user" value="<?= $_SESSION['id_usuario']; ?>">
                 </div>
                 <div class="modal-body">
                     <div class="form-group row m-1">

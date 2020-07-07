@@ -52,6 +52,7 @@ class UsuariosController
         if (($email == $emailUsr) && (password_verify($pass, $passUsr))) {
             $usuarioValido = "ok";
             $_SESSION['nombre'] = $usuario['nombre'];
+            $_SESSION['id_usuario'] = $usuario['id_usuario'];
             $_SESSION['tipo'] = $usuario['tipo'];
             $_SESSION['token'] = $usuario['token'];
             $_SESSION['imagen'] = $usuario['imagen'];

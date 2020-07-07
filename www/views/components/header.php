@@ -15,7 +15,7 @@
             <li class="nav-item mx-3">
                 <a class="nav-link" href="index.php?pagina=nosotros">About</a>
             </li>
-            <li class="nav-item  mx-3">
+            <li class="nav-item mx-3 mb-0">
                 <a class="nav-link" href="index.php?pagina=contacto">Contacto</a>
             </li>
             <?php if (isset($_SESSION['nombre'])) : ?>
@@ -30,11 +30,8 @@
                     </div>
                 </li>
 
-
-
-
             <?php else : ?>
-                <li class="nav-item  mx-2">
+                <li class="nav-item mx-2 my-1">
                     <a class="btn btn-outline-success btn-sm pt-1 my-2 my-sm-0" href="index.php?login"> <i class="far fa-user mr-2"></i> Acceder</a>
                 </li>
             <?php endif ?>
