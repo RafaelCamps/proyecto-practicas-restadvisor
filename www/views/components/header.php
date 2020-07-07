@@ -19,7 +19,7 @@
                 <a class="nav-link" href="index.php?pagina=contacto">Contacto</a>
             </li>
             <li class="nav-item  mx-3 pt-1">
-                <a class="btn btn-outline-success btn-sm my-2 my-sm-0" href="index.php?registro"> <i class="far fa-user mr-2"></i> Acceder</a>
+                <a class="btn btn-outline-success btn-sm my-2 my-sm-0" href="index.php?login"> <i class="far fa-user mr-2"></i> Acceder</a>
             </li>
         </ul>
         <!-- <form class="form-inline my-2 my-lg-0 pr-5">

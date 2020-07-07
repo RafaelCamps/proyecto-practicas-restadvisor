@@ -76,14 +76,14 @@ if (isset($_POST['registro'])) {
             <a class="text-decoration-none" href="index.php">
                 <h1 class="mb-3 font-weight-normal"><img src="public/img/logos/logo-redondo.png" alt="" width="200" height="200"></h1>
             </a>
-            <h3 class="display-4 mb-3 text-success font-weight-normal">Regístrate</h3>
+            <h3 class="display-4 mb-3 text-success font-weight-normal">Bienvenid@</h3>
         </div>
 
-        <div class="form-label-group">
+        <!-- <div class="form-label-group">
             <input type="text" id="registroNombre" name="registroNombre" class="form-control" placeholder="User name" autofocus value="<?= $nombre; ?>">
             <label for="registroNombre">Nombre</label>
             <small class="form-text text-danger mb-3 pl-3"><?= ($errorNombre != "") ? $errorNombre : ""; ?></small>
-        </div>
+        </div> -->
 
         <div class="form-label-group">
             <input type="email" id="registroEmail" name="registroEmail" class="form-control" placeholder="Correo electrónico" value="<?= $email; ?>">
@@ -98,8 +98,8 @@ if (isset($_POST['registro'])) {
         </div>
 
 
-        <button class="btn btn-lg btn-success btn-block" name="registro" type="submit">Crear nuevo usuario</button>
-        <p class="mt-4 mb-3 text-muted text-center">¿Ya tienes una cuenta? <a class="ml-2 text-success" href="index.php?login">Accede con tu usuario</a> </p>
+        <button class="btn btn-lg btn-success btn-block" name="registro" type="submit">Acceder</button>
+        <p class="mt-4 mb-3 text-muted text-center">¿No tienes una cuenta? <a class="ml-2 text-success" href="index.php?registro">Regístrate</a> </p>
 
     </form>
 
