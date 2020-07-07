@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once 'config/functions.php';
 
 require_once 'controllers/usuarios.controller.php';

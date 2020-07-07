@@ -23,7 +23,10 @@
         include_once 'views/pages/registro.php';
     } elseif (isset($_GET['login'])) {
         //Mostramos el formulario de login
-
+        include_once 'views/pages/login.php';
+    } elseif (isset($_GET['logout'])) {
+        //Mostramos el formulario de login
+        include_once 'views/pages/logout.php';
     } elseif (isset($_SESSION['tipo']) && $_SESSION['tipo'] == 2) {
         //Mostramos el back
     } else {
