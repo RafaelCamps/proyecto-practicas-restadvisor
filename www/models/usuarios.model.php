@@ -38,6 +38,19 @@ class UsuariosModel
 
     /* ===== Leer todos los datos de un usuario ==== */
 
+    static public function obtenerUsuariosMdl($email)
+    {
+
+        $consulta = Conexion::conectar()->prepare("SELECT * FROM usuarios WHERE email = :email");
+        $consulta->bindParam(":email", $email, PDO::PARAM_STR);
+        $consulta->execute();
+        var_dump($consulta);
+
+        $resultado = $consulta->fetch();
+
+        return $resultado;
+    }
+
     /*===============================================================
         UPDATE - Actualizar registro en la tabla usuarios
     =================================================================*/
