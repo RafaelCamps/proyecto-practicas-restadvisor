@@ -1,6 +1,7 @@
 <?php
+$mapa = true; // Esto identifica si en la página debe aparecer un mapa
 
-// echo '<br><br><br>';
+echo '<br><br><br>';
 $id = $_GET['restaurante'];
 
 $restaurante = RestaurantesController::mostrarDatosRestauranteCtrl($id);
@@ -10,7 +11,11 @@ if (isset($_POST['reservarMesa'])) {
     include_once 'views/components/reservaMesa.php';
 }
 
-$mapa = true;
+if (isset($_POST['enviarComentario'])) {
+
+    var_dump($_POST);
+}
+
 
 //echo '<br><br><br>';
 
@@ -108,10 +113,66 @@ $mapa = true;
     </div>
 </div>
 
+<!-- Mapa -->
 
 <div class="map-rest" id="map" lat="<?= $restaurante['latitud']; ?>" long="<?= $restaurante['longitud']; ?>"></div>
 
-<!-- Modal -->
+<!-- Sección comentarios -->
+
+<section class="container mt-3 pb-5">
+    <div class="comment-header mx-5 mb-3 d-flex justify-content-between">
+        <div class="col-md-6">
+            <h3 class="text-success">Comentarios</h3>
+        </div>
+        <div class="col-md-6">
+            <?php if (isset($_SESSION['nombre'])) : ?>
+                <button type="button" class="btn btn-outline-success btn-block" data-toggle="modal" data-target="#comentarioModal">
+                    Añadir comentario
+                </button>
+            <?php endif; ?>
+        </div>
+    </div>
+    <article class="mx-5 my-2 px-2 bg-white border border-success rounded row comentario">
+        <div class="user col-md-3 py-3 d-flex flex-column align-items-center">
+            <img class="img-fluid imgComm" src="public/img/users/user-default.png" alt="">
+            <p class="m-1">Nombre Usuario</p>
+            <p class="m-0 text-secondary"><small>Nº Comentarios</small></p>
+        </div>
+        <div class="comment col-md-9 p-3">
+            <h4 class="text-info">Título comentario</h4>
+            <small class="text-info">Fecha comentario</small>
+            <p class="text-secondary">Comentario Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eius qui dignissimos obcaecati nemo, possimus natus consequatur, aspernatur nihil vitae molestias rerum iste a, eaque vero sequi itaque! Magnam, obcaecati.</p>
+        </div>
+    </article>
+    <article class="mx-5 my-2 px-2 bg-white border border-success rounded row comentario">
+        <div class="user col-md-3 py-3 d-flex flex-column align-items-center">
+            <img class="img-fluid imgComm" src="public/img/users/user-default.png" alt="">
+            <p class="m-1">Nombre Usuario</p>
+            <p class="m-0 text-secondary"><small>Nº Comentarios</small></p>
+        </div>
+        <div class="comment col-md-9 p-3">
+            <h4 class="text-info">Título comentario</h4>
+            <small class="text-info">Fecha comentario</small>
+            <p class="text-secondary">Comentario Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eius qui dignissimos obcaecati nemo, possimus natus consequatur, aspernatur nihil vitae molestias rerum iste a, eaque vero sequi itaque! Magnam, obcaecati.</p>
+        </div>
+    </article>
+    <article class="mx-5 my-2 px-2 bg-white border border-success rounded row comentario">
+        <div class="user col-md-3 p-3 d-flex flex-column align-items-center">
+            <img class="img-fluid imgComm" src="public/img/users/user-default.png" alt="">
+            <p class="m-1">Nombre Usuario</p>
+            <p class="m-0 text-secondary"><small>Nº Comentarios</small></p>
+        </div>
+        <div class="comment col-md-9 p-3">
+            <h4 class="text-info">Título comentario</h4>
+            <small class="text-info">Fecha comentario</small>
+            <p class="text-secondary">Comentario Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus eius qui dignissimos obcaecati nemo, possimus natus consequatur, aspernatur nihil vitae molestias rerum iste a, eaque vero sequi itaque! Magnam, obcaecati.</p>
+        </div>
+    </article>
+</section>
+
+
+
+<!-- Modal Reserva Mesa -->
 <div class="modal fade" id="reservaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="reservaModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form method="POST">
@@ -155,6 +216,46 @@ $mapa = true;
                 <div class="modal-footer d-flex justify-content-between">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                     <button type="submit" class="btn btn-success" name="reservarMesa">Solicitar reserva</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Comentario -->
+<div class="modal fade" id="comentarioModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="reservaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST">
+            <div class="modal-content">
+                <div class="modal-header bg-success d-flex justify-content-center">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Nuevo comentario</h5>
+                    <input type="hidden" name="restaurante" value="<?= $restaurante['id_restaurante']; ?>">
+                    <input type="hidden" name="token" value="<?= $_SESSION['token']; ?>">
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row m-1">
+                        <label class="col-md-3" for="nombre">Nombre:</label>
+                        <input type="text" class="form-control col-md-9" id="nombre" name="nombre" aria-describedby="nombreUsuario" disabled value="<?= $_SESSION['nombre'] ?>">
+                        <!-- <small id="nombreHelp" class="form-text text-muted"></small> -->
+                    </div>
+                    <div class="form-group row m-1">
+                        <label class="col-md-3" for="email">Título:</label>
+                        <input type="text" class="form-control col-md-9" id="titulo" name="titulo" aria-describedby="titulo" placeholder="Escriba el título de su comentario" required>
+                        <small id="tituloHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group row m-1">
+                        <label class="col-md-3" for="email">Valoración:</label>
+                        <input type="number" class="form-control col-md-9" id="valoracion" name="valoracion" min="1" max="5" step="1" aria-describedby="titulo" placeholder="Valoración" required>
+                        <small id="tituloHelp" class="form-text text-muted"></small>
+                    </div>
+                    <div class="form-group my-3 text-center">
+                        <label class="h5 text-success" for="comentario">Comentario</label>
+                        <textarea class="form-control" id="comentario" name="comentario" rows="4" placeholder="Escribe aquí tu comentario"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" name="enviarComentario">Enviar Comentario</button>
                 </div>
             </div>
         </form>
