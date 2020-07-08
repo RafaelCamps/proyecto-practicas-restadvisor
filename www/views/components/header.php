@@ -15,26 +15,23 @@
             <li class="nav-item mx-3">
                 <a class="nav-link" href="index.php?pagina=nosotros">About</a>
             </li>
-            <li class="nav-item  mx-3">
+            <li class="nav-item mx-3 mb-0">
                 <a class="nav-link" href="index.php?pagina=contacto">Contacto</a>
             </li>
             <?php if (isset($_SESSION['nombre'])) : ?>
                 <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle py-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle py-0" style="min-width:150px" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="user-header mr-2" src="public/img/users/<?= $_SESSION['imagen']; ?>" alt=""> <span class="text-success"><?= $_SESSION['nombre']; ?></span>
                     </a>
-                    <div class="dropdown-menu mt-2 ml-5" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu mt-2 ml-2" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#"><i class="fas fa-user-cog mr-2"></i> Settings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-danger" href="index.php?logout"><i class="fas fa-sign-out-alt mr-2"></i> Salir</a>
                     </div>
                 </li>
 
-
-
-
             <?php else : ?>
-                <li class="nav-item  mx-2">
+                <li class="nav-item mx-2 my-1">
                     <a class="btn btn-outline-success btn-sm pt-1 my-2 my-sm-0" href="index.php?login"> <i class="far fa-user mr-2"></i> Acceder</a>
                 </li>
             <?php endif ?>

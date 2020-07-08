@@ -37,7 +37,7 @@ if (isset($_POST['registro'])) {
     if (!empty($pass)) {
         $pattern = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$^";
         if (!preg_match($pattern, $pass)) {
-            $errorPass = "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula, al menos una mayúscula.";
+            $errorPass = "La contraseña debe tener entre 8 y 16 caracteres, por lo menos un número, al menos una minúscula, y como mínimo una mayúscula.";
         }
     } else {
         $errorPass = $obligatorio;
@@ -60,7 +60,7 @@ if (isset($_POST['registro'])) {
         
                 Notifier.success("Ya puedes acceder ingresando tu email y contraseña","Usuario creado con éxito");
             });
-            setTimeout(function(){ window.location = "index.php"; }, 2000);
+            setTimeout(function(){ window.location = "index.php?login"; }, 2000);
             </script>';
         }
     }
