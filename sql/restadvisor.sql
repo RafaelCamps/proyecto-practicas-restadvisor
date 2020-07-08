@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db-restadvisor
--- Tiempo de generación: 08-07-2020 a las 06:52:11
+-- Tiempo de generación: 08-07-2020 a las 13:54:37
 -- Versión del servidor: 8.0.20
 -- Versión de PHP: 7.4.6
 
