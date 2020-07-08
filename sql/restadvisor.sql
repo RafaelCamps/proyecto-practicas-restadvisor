@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db-restadvisor
--- Tiempo de generación: 01-07-2020 a las 15:15:50
+-- Tiempo de generación: 08-07-2020 a las 14:48:21
 -- Versión del servidor: 8.0.20
 -- Versión de PHP: 7.4.6
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `restadvisor`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentarios`
+--
+
+CREATE TABLE `comentarios` (
+  `id_comentario` int NOT NULL,
+  `id_restaurante` int NOT NULL,
+  `id_user` int NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `valoracion` tinyint NOT NULL,
+  `comentario` text NOT NULL,
+  `creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -46,8 +62,35 @@ CREATE TABLE `restaurantes` (
   `creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int NOT NULL,
+  `nombre` varchar(75) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `pass` varchar(255) NOT NULL,
+  `tipo` tinyint(1) NOT NULL,
+  `token` varchar(100) NOT NULL,
+  `imagen` varchar(100) DEFAULT NULL,
+  `creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 --
 -- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `id_restaurante` (`id_restaurante`) USING BTREE,
+  ADD KEY `id_user` (`id_user`);
+
 --
 -- Indices de la tabla `restaurantes`
 --
@@ -55,16 +98,45 @@ ALTER TABLE `restaurantes`
   ADD PRIMARY KEY (`id_restaurante`);
 
 --
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `email_UNIQUE` (`email`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id_comentario` int NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT de la tabla `restaurantes`
 --
 ALTER TABLE `restaurantes`
-  MODIFY `id_restaurante` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_restaurante` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_restaurante`) REFERENCES `restaurantes` (`id_restaurante`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
