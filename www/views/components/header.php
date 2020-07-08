@@ -20,10 +20,10 @@
             </li>
             <?php if (isset($_SESSION['nombre'])) : ?>
                 <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle py-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle py-0" style="min-width:150px" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img class="user-header mr-2" src="public/img/users/<?= $_SESSION['imagen']; ?>" alt=""> <span class="text-success"><?= $_SESSION['nombre']; ?></span>
                     </a>
-                    <div class="dropdown-menu mt-2 ml-5" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu mt-2 ml-2" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#"><i class="fas fa-user-cog mr-2"></i> Settings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-danger" href="index.php?logout"><i class="fas fa-sign-out-alt mr-2"></i> Salir</a>

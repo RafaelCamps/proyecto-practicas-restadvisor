@@ -16,7 +16,6 @@ if (isset($_POST['enviarComentario'])) {
 
     $datos = array(
         "restaurante" => $_POST['restaurante'],
-        "usuario" => $_POST['user'],
         "titulo" => $_POST['titulo'],
         "valoracion" => $_POST['valoracion'],
         "comentario" => $_POST['comentario'],
@@ -36,7 +35,16 @@ if (isset($_POST['enviarComentario'])) {
      
         </script>';
     } else {
-        echo "Error al crear el comentario!";
+        echo '<script>
+
+    document.addEventListener("DOMContentLoaded", function(event) {
+        
+        Notifier.error("¡No se ha podido crear el comentario!","¡Error!");
+
+        
+  });
+     
+        </script>';
     }
     //var_dump($datos);
 }
@@ -243,7 +251,6 @@ $comentarios = ComentariosController::obtenerComentariosCtrl($id);
                 <div class="modal-header bg-success d-flex justify-content-center">
                     <h5 class="modal-title text-white" id="exampleModalLabel">Nuevo comentario</h5>
                     <input type="hidden" name="restaurante" value="<?= $restaurante['id_restaurante']; ?>">
-                    <input type="hidden" name="user" value="<?= $_SESSION['id_usuario']; ?>">
                 </div>
                 <div class="modal-body">
                     <div class="form-group row m-1">

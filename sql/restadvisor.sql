@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db-restadvisor
--- Tiempo de generación: 02-07-2020 a las 17:41:17
+-- Tiempo de generación: 08-07-2020 a las 06:52:11
 -- Versión del servidor: 8.0.20
 -- Versión de PHP: 7.4.6
 
@@ -30,10 +30,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `comentarios` (
   `id_comentario` int NOT NULL,
   `id_restaurante` int NOT NULL,
-  `id_usuario` int NOT NULL,
-  `valoracion` tinyint(1) NOT NULL,
-  `comentario` mediumtext NOT NULL,
-  `creacion` timestamp NOT NULL
+  `id_user` int NOT NULL,
+  `titulo` varchar(100) NOT NULL,
+  `valoracion` tinyint NOT NULL,
+  `comentario` text NOT NULL,
+  `creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -73,7 +74,9 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `pass` varchar(255) NOT NULL,
   `tipo` tinyint(1) NOT NULL,
-  `creacion` timestamp NOT NULL
+  `token` varchar(100) NOT NULL,
+  `imagen` varchar(100) DEFAULT NULL,
+  `creacion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -85,8 +88,8 @@ CREATE TABLE `usuarios` (
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
-  ADD KEY `fk_restaurante_idx` (`id_restaurante`),
-  ADD KEY `fk_usuario_idx` (`id_usuario`);
+  ADD KEY `id_restaurante` (`id_restaurante`) USING BTREE,
+  ADD KEY `id_user` (`id_user`);
 
 --
 -- Indices de la tabla `restaurantes`
@@ -131,8 +134,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `fk_restaurante` FOREIGN KEY (`id_restaurante`) REFERENCES `restaurantes` (`id_restaurante`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_restaurante`) REFERENCES `restaurantes` (`id_restaurante`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

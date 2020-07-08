@@ -9,11 +9,12 @@ class ComentariosController
 
     static public function crearComentarioCtrl($datos)
     {
-        
+
+        $datos['usuario'] = $_SESSION['id_usuario'];
+
         $respuesta = ComentariosModel::crearComentarioMdl($datos);
 
         return $respuesta;
-
     }
 
     /*===============================================================
@@ -25,10 +26,9 @@ class ComentariosController
         $comentarios = ComentariosModel::obtenerComentariosMdl($restaurante);
 
         return $comentarios;
-        
     }
 
-    
+
 
 
     /*===============================================================
