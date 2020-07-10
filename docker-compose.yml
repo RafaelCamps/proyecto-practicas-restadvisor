@@ -19,10 +19,10 @@ services:
       - ./sql:/docker-entrypoint-initdb.d
       - ./data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: P4sSw0rd2
+      MYSQL_ROOT_PASSWORD: InsertPassword
       MYSQL_DATABASE: restadvisor
       MYSQL_USER: admin
-      MYSQL_PASSWORD: M4sT3r4Dm1n2
+      MYSQL_PASSWORD: InsertUserPassword
     ports:
       - "3306:3306"
     networks:
@@ -37,7 +37,7 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: db-restadvisor
-      MYSQL_ROOT_PASSWORD: P4sSw0rd2
+      MYSQL_ROOT_PASSWORD: InsertPassword
     networks:
       - restadvisor
 networks:
