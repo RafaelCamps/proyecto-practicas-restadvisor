@@ -19,7 +19,7 @@ $mail->SMTPSecure = 'tls'; //seguridad
 $mail->Host = "smtp.gmail.com"; // servidor smtp
 $mail->Port = 587; //puerto 465?
 $mail->Username = 'restadvisor.es@gmail.com'; //nombre usuario
-$mail->Password = 'buscadorderestaurantes'; //contraseña
+$mail->Password = '**************'; //contraseña
 
 /* === MUY IMPORTANTE === */
 //Hay que configurar en la cuenta de gmail de google que estemos usando, que permita el acceso de aplicaciones poco seguras.
