@@ -8,7 +8,7 @@ class Conexion
 
         $server = "db-restadvisor";
         $user = "admin";
-        $pass = "M4sT3r4Dm1n";
+        $pass = "M4sT3r4Dm1n2";
         $db = "restadvisor";
 
         $link = new PDO("mysql:host=$server;dbname=$db", $user, $pass);

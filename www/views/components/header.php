@@ -37,8 +37,6 @@
             <?php endif ?>
 
         </ul>
-        <!-- <form class="form-inline my-2 my-lg-0 pr-5">
-            <button type="submit">Iniciar Sesión</button>
-        </form> -->
+        
     </div>
 </nav>
